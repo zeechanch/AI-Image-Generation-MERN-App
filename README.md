@@ -28,9 +28,13 @@ AI Generation: Freepik API
 ## Project Structure
 
 NexArt/
+
 ├── client/        # React frontend (Vercel)
+
 ├── server/        # Node/Express backend (Render)
+
 ├── .gitignore
+
 ├── README.md
 
 ---
