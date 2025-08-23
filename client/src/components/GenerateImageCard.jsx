@@ -1,6 +1,11 @@
 import { CircularProgress } from '@mui/material'
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const gradientLoop = keyframes`
+  0%   { background-position: 200% 50%; }
+  100% { background-position: 0% 50%; }
+`;
 
 const Container = styled.div`
     flex: 1;
@@ -11,9 +16,42 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     padding: 16px;
-    border: 2px dashed ${({theme}) => theme.yellow};
+    position: relative;
     color: ${({theme}) => theme.arrow+80};
     border-radius: 20px;
+    background: transparent;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 20px;
+        padding: 2px;
+        background: linear-gradient(
+          90deg,
+          #00B2B2,
+          #008C8F,
+          #005B5C,
+          #002D32,
+          #00B2B2
+        );
+        background-size: 200% 100%;
+        animation: ${gradientLoop} 4s linear infinite;
+        -webkit-mask: 
+          linear-gradient(#fff 0 0) content-box, 
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: 0;
+    }
+    
+    & > * {
+        position: relative;
+        z-index: 1;
+    }
 `
 
 const Image = styled.img`
