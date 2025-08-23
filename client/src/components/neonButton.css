@@ -1,0 +1,108 @@
+/* Base button styles */
+.btn {
+    position: relative;
+    display: inline-flex; /* changed to flex for alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  
+    padding: 10px 24px;
+    margin: 10px;
+    height: min-content;
+  
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    background: transparent;
+  
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+  
+    transition: all 0.3s ease;
+  }
+  
+  /* Neon button styles */
+  .btn.btn--neon {
+    --neon-color: #03e9f4;
+    --neon-text-on-hover: #050801;
+    --neon-hue: 290deg;
+  
+    color: var(--neon-color);
+    overflow: hidden;
+    filter: hue-rotate(var(--neon-hue));
+  }
+  
+  .btn.btn--neon:hover {
+    background: var(--neon-color);
+    color: var(--neon-text-on-hover);
+    box-shadow:
+      0 0 5px var(--neon-color),
+      0 0 25px var(--neon-color),
+      0 0 50px var(--neon-color),
+      0 0 200px var(--neon-color);
+  }
+  
+  .btn.btn--neon span {
+    position: absolute;
+    display: block;
+    background: linear-gradient(180deg, transparent, var(--neon-color));
+  }
+  
+  /* Top border */
+  .btn.btn--neon span:nth-child(1) {
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    animation: neonBorder1 1s linear infinite;
+  }
+  @keyframes neonBorder1 {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  /* Right border */
+  .btn.btn--neon span:nth-child(2) {
+    top: 0; right: 0;
+    width: 3px; height: 100%;
+    animation: neonBorder2 1s linear infinite;
+    animation-delay: 0.25s;
+  }
+  @keyframes neonBorder2 {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  /* Bottom border */
+  .btn.btn--neon span:nth-child(3) {
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    animation: neonBorder3 1s linear infinite;
+  }
+  @keyframes neonBorder3 {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Left border */
+  .btn.btn--neon span:nth-child(4) {
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    animation: neonBorder4 2s linear infinite;
+    animation-delay: 0.25s;
+  }
+  @keyframes neonBorder4 {
+    0%   { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .btn {
+      padding: 8px 12px;
+    }
+  }
+  
