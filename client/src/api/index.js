@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const API =axios.create({
-    baseURL: "http://localhost:8080/api",
+// Use deployed API if provided, fallback to local dev server
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost:8080/api";
+
+const API = axios.create({
+    baseURL: API_BASE_URL,
 });
 
 export const getPosts = async () => await API.get("/posts/");
