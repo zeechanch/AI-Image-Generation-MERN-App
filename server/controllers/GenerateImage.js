@@ -22,7 +22,7 @@ export const generateImage = async (req, res, next) => {
             body: JSON.stringify({
                 prompt: prompt,
                 guidance_scale: 1.5,
-                filter_nsfw: false,
+                filter_nsfw: true,
                 image: {
                     num_images: 1
                 }

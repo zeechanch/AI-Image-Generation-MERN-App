@@ -17,12 +17,14 @@ const SearchBarContainer = styled.div`
 
 `;
 
-const SearchBar = () => {
+const SearchBar = ({value, onChange}) => {
   return (
     <SearchBarContainer>
         <SearchOutlined />
         <input 
         placeholder = "Search with prompt or name . . ."
+        value={value}
+        onChange={onChange}
         style ={{
             border: "none",
             outline: "none",

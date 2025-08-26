@@ -129,6 +129,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     fetchPosts();
@@ -157,6 +158,15 @@ const Home = () => {
     fetchPosts();
   };
 
+  const normalizedQuery = query.trim().toLowerCase();
+  const visiblePosts = normalizedQuery
+    ? posts.filter((post) => {
+        const name = String(post?.name || "").toLowerCase();
+        const prompt = String(post?.prompt || "").toLowerCase();
+        return name.includes(normalizedQuery) || prompt.includes(normalizedQuery);
+      })
+    : posts;
+
   return (
     <Container>
       <Headline>
@@ -164,7 +174,10 @@ const Home = () => {
         <PremiumGradientLoop>⦿ Generated with AI ⦿</PremiumGradientLoop>
       </Headline>
       
-      <SearchBar />
+      <SearchBar
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
       <Wrapper>
         <CardWrapper>
           {loading ? (
@@ -176,8 +189,10 @@ const Home = () => {
             </div>
           ) : posts.length === 0 ? (
             <NoPostsMessage>No posts yet. Be the first to create one!</NoPostsMessage>
+          ) : visiblePosts.length === 0 && normalizedQuery ? (
+            <NoPostsMessage>No results for "{query}"</NoPostsMessage>
           ) : (
-            posts.map((post, index) => (
+            visiblePosts.map((post, index) => (
               <ImageCard 
                 key={post._id || index} 
                 item={{
