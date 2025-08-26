@@ -79,7 +79,8 @@ const GenrateImageForm = ({post, setPost, createPostLoading, setCreatePostLoadin
                 }
                 
                 console.log('Setting photo URL:', photoUrl.substring(0, 100) + '...');
-                setPost({ ...post, photo: photoUrl });
+                const hasNsfw = Boolean(res?.data?.has_nsfw);
+                setPost({ ...post, photo: photoUrl, has_nsfw: hasNsfw });
             } else {
                 console.error('No photo in response:', res);
                 console.error('Response structure:', JSON.stringify(res, null, 2));

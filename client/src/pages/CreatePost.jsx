@@ -43,12 +43,13 @@ const CreatePost = () => {
     name: "",
     prompt: "",
     photo: "",
+    has_nsfw: false,
   })
   return (
     <Container>
       <Wrapper>
       <GenrateImageForm post={post} setPost={setPost} createPostLoading={createPostLoading} setCreatePostLoading={setCreatePostLoading} generateImageLoading={GenerateImageLoading} setGenerateImageLoading={setGenerateImageLoading} />
-      <GenerateImageCard loading={GenerateImageLoading} src={post?.photo} />
+      <GenerateImageCard loading={GenerateImageLoading} src={post?.photo} hasNsfw={post?.has_nsfw} />
       </Wrapper>
       </Container>
   )

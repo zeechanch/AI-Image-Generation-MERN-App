@@ -62,6 +62,13 @@ const Image = styled.img`
     background-color: ${({theme}) => theme.black+50};
 `
 
+const ImageWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+`
+
 const ErrorMessage = styled.div`
     color: ${({theme}) => theme.red || '#ff4444'};
     text-align: center;
@@ -78,7 +85,26 @@ const DebugInfo = styled.div`
     border-radius: 8px;
 `
 
-const GenerateImageCard = ({src, loading}) => {
+const Banner = styled.div`
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14px;
+    border-radius: 0 0 24px 24px;
+      background: #141414;
+    color: red;
+    font-size: 28px;
+    font-weight: bold;
+    backdrop-filter: blur(6px);
+`;
+
+const GenerateImageCard = ({src, loading, hasNsfw}) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -117,7 +143,7 @@ const GenerateImageCard = ({src, loading}) => {
                 <>
                     {
                         src ? (
-                            <>
+                            <ImageWrapper>
                                 <Image 
                                     src={src} 
                                     onLoad={handleImageLoad}
@@ -125,6 +151,11 @@ const GenerateImageCard = ({src, loading}) => {
                                     alt="Generated AI image"
                                     crossOrigin="anonymous"
                                 />
+                                {hasNsfw && (
+                                    <Banner>
+                                        <p>Buddy I know your ip address</p>
+                                    </Banner>
+                                )}
                                 {imageError && (
                                     <ErrorMessage>
                                         Failed to load image. The URL might be invalid or inaccessible.
@@ -132,7 +163,7 @@ const GenerateImageCard = ({src, loading}) => {
                                         Error details logged to console.
                                     </ErrorMessage>
                                 )}
-                            </>
+                            </ImageWrapper>
                         ) : (
                             <>write a prompt to generate an image</>
                         )
