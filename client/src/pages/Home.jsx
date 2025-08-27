@@ -24,6 +24,7 @@ const Headline = styled.div`
   font-size: 34px;
   font-weight: 500;
   color: ${({theme}) => theme.text_primary};
+  text-align: center;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -170,7 +171,7 @@ const Home = () => {
   return (
     <Container>
       <Headline>
-        Explore Popular posts in the community!
+        <p>Explore Popular posts in the community!</p>
         <PremiumGradientLoop>⦿ Generated with AI ⦿</PremiumGradientLoop>
       </Headline>
       

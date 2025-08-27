@@ -16,7 +16,7 @@ const Container  = styled.div`
     justify-content: center;
     gap: 20px;
     @media (max-width: 768px){
-    padding: 6px 10px;
+    padding: 130px 10px 10px;
     }
 `;
 

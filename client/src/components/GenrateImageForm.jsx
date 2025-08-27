@@ -24,12 +24,18 @@ const Title = styled.div`
     font-size: 28px;
     font-weight: 500;
     color: ${({theme}) => theme.text_primary};
+    @media (max-width: 768px){
+    text-align: center;
+    }
 `
 
 const Desc = styled.p`
     font-size: 17px;
     font-weight: 400;
     color: ${({theme}) => theme.text_secondary};
+    @media (max-width: 768px){
+    text-align: center;
+    }
 `
 
 const Body = styled.div`
@@ -138,7 +144,7 @@ const GenrateImageForm = ({post, setPost, createPostLoading, setCreatePostLoadin
            <Body>
             <TextInput label="Author" placeholder="Enter your name..." name="name" value={post.name} onChange={(e) => setPost({...post, name: e.target.value})}/>
             <TextInput label="Image prompt" placeholder="Write a detailed prompt about the image you want to generate . . ." name="prompt" rows="8" textArea value={post.prompt} onChange={(e) => setPost({...post, prompt: e.target.value})}/>
-           * * You can post the AI generated image to the community * *
+           <p>* * You can post the AI generated image to the community * *</p>
            </Body>
            <Actions>
             <Button text="Generate Image" flex leftIcon={<AutoAwesome/>} isLoading={generateImageLoading} isDisabled={post.prompt === ""} onClick={generateImageFun} />
