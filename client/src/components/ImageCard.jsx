@@ -60,7 +60,7 @@ const Author =  styled.div`
     font-size: 14px;
     display: flex;
     gap: 8px;
-    align-items: centre;
+    align-items: center;
     color: ${({theme}) => theme.white};
 `;
 
@@ -83,7 +83,7 @@ const ImageCard = ({item}) => {
                 }}>
                     <Author>
                     <Avatar style = {{width: "32px", height: "32px"}}>{item?.author[0]}</Avatar>
-                    {item?.author}
+                    <p>{item?.author}</p>
                 </Author>
                 <DownloadRounded onClick={() => FileSaver.saveAs(item?.photo, "download.jpg") } />
                 </div>
